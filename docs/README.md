@@ -2,7 +2,7 @@
 
 > 本文档集旨在帮助你**深入理解**项目的每一个角落，并掌握**如何将其变成可复用模板**。
 >
-> **共 27 篇文档**，覆盖架构分析、模板化指南、高级主题、TypeScript 迁移四大板块。
+> **共 48 篇文档**，覆盖架构分析、模板化指南、高级主题、TypeScript 迁移、**通用框架设计**五大板块。
 
 ---
 
@@ -58,6 +58,34 @@
 |---|------|------|--------|
 | 01 | [TS重写迁移指南](typescript-rewrite/01-migration-guide.md) | 当前状态、core.ts接口、search.ts/design_system.ts迁移计划 | 开发者 |
 
+## 五、通用框架设计文档（Framework Design）— 21 篇 ★ NEW
+
+**可直接复制到新项目使用**的通用 AI Skill 框架设计蓝图。详见 [framework-design/00-README.md](framework-design/00-README.md)。
+
+| # | 文档 | 内容 | 适合谁 |
+|---|------|------|--------|
+| 00 | [文档索引](framework-design/00-README.md) | 21篇文档总览、阅读路径推荐 | 所有人 |
+| 01 | [执行摘要](framework-design/01-executive-summary.md) | 框架定位、核心价值、适用场景、技术选型 | 决策者 |
+| 02 | [三层架构设计](framework-design/02-three-layer-architecture.md) | 数据/逻辑/表现层完整设计、接口、扩展点 | 架构师 |
+| 03 | [数据层设计](framework-design/03-data-layer-design.md) | CSV规范、Schema设计、数据关系、质量保障 | 数据工程师 |
+| 04 | [搜索引擎设计](framework-design/04-search-engine-design.md) | BM25算法详解、完整实现、域配置、自动检测 | 开发者 |
+| 05 | [推理引擎设计](framework-design/05-reasoning-engine-design.md) | 三级匹配、Decision_Rules、搜索注入机制 | 开发者 |
+| 06 | [生成器设计](framework-design/06-design-system-generator.md) | 多域聚合、最佳匹配、输出格式化、持久化 | 开发者 |
+| 07 | [模板渲染引擎](framework-design/07-template-rendering-engine.md) | 占位符系统、平台JSON、零代码加平台 | 开发者 |
+| 08 | [CLI分发系统](framework-design/08-cli-distribution-design.md) | 三级回退、自动检测、npm配置 | DevOps |
+| 09 | [多平台适配](framework-design/09-multi-platform-adaptation.md) | 平台矩阵、差异维度、接入步骤 | 开发者 |
+| 10 | [持久化模式](framework-design/10-persistence-pattern.md) | Master+Overrides、页面覆写、AI使用流程 | 架构师 |
+| 11 | [数据同步策略](framework-design/11-data-sync-strategy.md) | 三角同步、Symlink、CLI Assets、验证脚本 | 维护者 |
+| 12 | [API接口参考](framework-design/12-api-interface-reference.md) | 所有Python/TS函数签名、类型、CLI命令 | 开发者 |
+| 13 | [CSV Schema规范](framework-design/13-csv-schema-specification.md) | 6种Schema模板、列定义、约束规则 | 数据工程师 |
+| 14 | [配置参考](framework-design/14-configuration-reference.md) | BM25参数、CSV_CONFIG、平台JSON、package.json | 开发者 |
+| 15 | [错误处理模式](framework-design/15-error-handling-patterns.md) | 降级矩阵、边界条件、错误码 | 开发者 |
+| 16 | [性能指南](framework-design/16-performance-guide.md) | 复杂度分析、基准测试、优化级别 | 架构师 |
+| 17 | [安全检查清单](framework-design/17-security-checklist.md) | 攻击面、数据/搜索/CLI安全、依赖审计 | 安全工程师 |
+| 18 | [测试策略](framework-design/18-testing-strategy.md) | 数据质量/单元/集成/E2E测试、CI/CD | QA |
+| 19 | [迁移指南](framework-design/19-migration-guide.md) | 6步迁移法、3个案例、完整检查清单 | 开发者 |
+| 20 | [快速上手食谱](framework-design/20-quick-start-cookbook.md) | 5分钟创建新Skill的完整流程 | 所有人 |
+
 ## 附录
 
 | 文档 | 内容 |
@@ -102,4 +130,10 @@ template-guide/01-philosophy → 04-step-by-step → 05-customization → 07-exa
 
 ```
 advanced/05-faq-and-troubleshooting → advanced/06-glossary
+```
+
+### 🟠 如果你想「复制框架到新项目」★
+
+```
+framework-design/20-quick-start → 19-migration-guide → 02-architecture → 03-data-layer → 04-search-engine
 ```
