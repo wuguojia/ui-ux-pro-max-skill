@@ -23,12 +23,19 @@ export const CSV_CONFIGS: DomainConfig = {
     outputColumns: ['Name', 'Category', 'Description', 'Do', 'Dont', 'Severity'],
   },
 
-  // Add your own domains here
-  // patterns: {
-  //   file: 'patterns.csv',
-  //   searchColumns: ['Pattern_Name', 'Category', 'Keywords'],
-  //   outputColumns: ['Pattern_Name', 'Use_Case', 'Implementation'],
-  // },
+  // Components: UI components and design system elements
+  components: {
+    file: 'components.csv',
+    searchColumns: ['Component_Name', 'Framework', 'Category', 'Keywords', 'Description'],
+    outputColumns: ['Component_Name', 'Framework', 'Description', 'Usage', 'Example', 'Category'],
+  },
+
+  // Patterns: Design and code patterns
+  patterns: {
+    file: 'patterns.csv',
+    searchColumns: ['Pattern_Name', 'Category', 'Keywords', 'Problem', 'Solution'],
+    outputColumns: ['Pattern_Name', 'Category', 'Problem', 'Solution', 'When_To_Use', 'Example'],
+  },
 };
 
 /**
@@ -37,7 +44,8 @@ export const CSV_CONFIGS: DomainConfig = {
 export const DOMAIN_KEYWORDS: DomainKeywords = {
   knowledge: /react|typescript|javascript|frontend|backend|database|api|testing|performance/i,
   tips: /tip|best practice|guideline|how to|should|recommend|avoid|anti-pattern/i,
-  // Add your own patterns here
+  components: /component|button|card|modal|input|form|ui|widget|element/i,
+  patterns: /pattern|architecture|design pattern|observer|factory|strategy|layout/i,
 };
 
 /**

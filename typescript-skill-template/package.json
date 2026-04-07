@@ -9,6 +9,8 @@
     "build": "tsc",
     "dev": "tsx src/scripts/search.ts",
     "search": "tsx src/scripts/search.ts",
+    "validate": "tsx src/cli/commands/validate.ts",
+    "import": "tsx src/cli/commands/import.ts",
     "test": "echo \"No tests yet\"",
     "lint": "echo \"No linting yet\""
   },
