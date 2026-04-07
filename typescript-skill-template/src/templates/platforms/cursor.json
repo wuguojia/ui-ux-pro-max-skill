@@ -1,0 +1,16 @@
+{
+  "platform": "cursor",
+  "displayName": "Cursor",
+  "installType": "full",
+  "folderStructure": {
+    "root": ".cursor",
+    "skillPath": "skills/my-skill",
+    "filename": "SKILL.md"
+  },
+  "scriptPath": "skills/my-skill/scripts/search.ts",
+  "frontmatter": {
+    "name": "my-skill",
+    "description": "My custom AI skill"
+  },
+  "supportsQuickReference": false
+}

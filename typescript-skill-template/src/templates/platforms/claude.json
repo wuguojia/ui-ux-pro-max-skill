@@ -1,0 +1,18 @@
+{
+  "platform": "claude",
+  "displayName": "Claude Code",
+  "installType": "full",
+  "folderStructure": {
+    "root": ".claude",
+    "skillPath": "skills/my-skill",
+    "filename": "SKILL.md"
+  },
+  "scriptPath": "skills/my-skill/scripts/search.ts",
+  "frontmatter": {
+    "name": "my-skill",
+    "version": "1.0.0",
+    "description": "My custom AI skill",
+    "activate": ["plan", "build", "create", "implement", "help"]
+  },
+  "supportsQuickReference": true
+}
