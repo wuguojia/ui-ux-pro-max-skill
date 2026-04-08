@@ -343,12 +343,6 @@ const report = generateQualityReport(score);
 
 The following items were **not implemented** in this phase:
 
-### 4.3 Watch Mode (Excluded by request)
-- File system watching
-- Automatic KB updates
-- Incremental scanning
-- Real-time synchronization
-
 ### Future Enhancements (v1.5+)
 - Unit tests for all new features
 - Integration with existing KB system
