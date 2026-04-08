@@ -271,7 +271,6 @@ await tracker.exportReport('./report.txt');
 ## 未来计划
 
 - [ ] 自动化扫描 (基于 git diff)
-- [ ] 实时质量监控
 - [ ] 更多验证维度 (性能、安全性)
 - [ ] Web UI 可视化
 - [ ] CI/CD 集成
