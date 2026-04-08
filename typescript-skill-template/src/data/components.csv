@@ -1,0 +1,3 @@
+No,Component_Name,Framework,Props,Description,Usage,Example,Category,Keywords
+1,Button,React,"variant size disabled","Primary action button component with multiple variants","Use for CTAs and important user actions","<Button variant='primary' size='lg'>Click Me</Button>",UI,"button,action,cta,click,primary"
+2,Card,React,"title children className","Container component for grouping related content","Use to group related information in a visual container","<Card title='User Info'><p>Name: John</p></Card>",Layout,"card,container,box,group"

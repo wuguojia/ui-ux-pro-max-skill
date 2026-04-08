@@ -1,0 +1,6 @@
+No,Style_Type,Name,Value,Category,Usage,Example,Keywords
+1,CSS Variable,--primary,"hsl(221.2 83.2% 53.3%)",Color,Primary brand color for buttons and important UI elements,var(--primary),"primary,color,brand,blue"
+2,CSS Variable,--spacing-4,"1rem (16px)",Spacing,Standard spacing unit for gaps and padding,className="gap-4","spacing,gap,padding,margin,layout"
+3,Utility Class,bg-primary,background-color: hsl(var(--primary)),Color,Apply primary background color to elements,className="bg-primary","background,primary,color,utility"
+4,Utility Class,text-lg,font-size: 1.125rem,Typography,Large text size for headings and emphasis,className="text-lg","text,font,size,typography,large"
+5,CSS Variable,--shadow-md,"0 4px 6px -1px rgb(0 0 0 / 0.1)",Shadow,Medium shadow for cards and elevated elements,box-shadow: var(--shadow-md),"shadow,elevation,depth,card"

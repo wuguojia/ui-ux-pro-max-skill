@@ -1,0 +1,3 @@
+No,Pattern_Name,Category,Problem,Solution,When_To_Use,Example,Keywords
+1,Observer Pattern,Code,"Need to notify multiple objects when one object changes state","Define one-to-many dependency where observers automatically get notified","When one object state change should trigger updates in dependent objects","class Subject { observers = []; notify() { observers.forEach(o => o.update()) } }","observer,pattern,pubsub,events,subscribe"
+2,Hero + Features Layout,UI,"Need effective landing page structure","Large hero section followed by feature highlights","Landing pages and marketing websites","<section class='hero'><h1>Title</h1><button>CTA</button></section><section class='features'>...</section>","hero,landing,layout,marketing,cta"

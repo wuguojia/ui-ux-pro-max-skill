@@ -1,0 +1,25 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.local
+
+# Build outputs
+*.js
+*.d.ts
+*.map
+!src/**/*.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+
+# Temp files
+tmp/
+temp/

@@ -1,0 +1,39 @@
+{
+  "name": "typescript-skill-template",
+  "version": "1.0.0",
+  "description": "TypeScript AI Skill Template - Create your own AI skills with searchable knowledge bases",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/scripts/search.ts",
+    "search": "tsx src/scripts/search.ts",
+    "validate": "tsx src/cli/commands/validate.ts",
+    "import": "tsx src/cli/commands/import.ts",
+    "test": "echo \"No tests yet\"",
+    "lint": "echo \"No linting yet\""
+  },
+  "keywords": [
+    "ai",
+    "skill",
+    "template",
+    "typescript",
+    "bm25",
+    "search",
+    "knowledge-base",
+    "claude",
+    "cursor",
+    "copilot"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2",
+    "tsx": "^4.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
