@@ -30,7 +30,7 @@ Available stacks: `html-tailwind` (default), `react`, `nextjs`, `astro`, `vue`, 
 ## Architecture
 
 ```
-src/ui-ux-pro-max/                # Source of Truth
+src/ui-ux-pro-max/                # Source of Truth (UI/UX design intelligence)
 ├── data/                         # Canonical CSV databases
 │   ├── products.csv, styles.csv, colors.csv, typography.csv, ...
 │   └── stacks/                   # Stack-specific guidelines
@@ -42,6 +42,16 @@ src/ui-ux-pro-max/                # Source of Truth
     ├── base/                     # Base templates (skill-content.md, quick-reference.md)
     └── platforms/                # Platform configs (claude.json, cursor.json, ...)
 
+src/ai-codegen-booster/           # Source of Truth (AI codegen training)
+├── src/                          # TypeScript source code
+├── data/                         # CSV data (components, styles, conventions)
+├── scripts/                      # Build and utility scripts
+├── docs/                         # Documentation
+├── examples/                     # Example projects
+├── tests/                        # Test files
+├── package.json                  # Dependencies
+└── tsconfig.json                 # TypeScript config
+
 cli/                              # CLI installer (uipro-cli on npm)
 ├── src/
 │   ├── commands/init.ts          # Install command with template generation
@@ -52,6 +62,19 @@ cli/                              # CLI installer (uipro-cli on npm)
     └── templates/                # Copy of src/ui-ux-pro-max/templates/
 
 .claude/skills/ui-ux-pro-max/     # Claude Code skill (symlinks to src/)
+├── SKILL.md                      # Skill metadata
+├── data -> ../../src/ui-ux-pro-max/data
+└── scripts -> ../../src/ui-ux-pro-max/scripts
+
+.claude/skills/ai-codegen-booster/ # Claude Code skill (symlinks to src/)
+├── SKILL.md                       # Skill metadata
+├── INSTALL.md                     # Installation guide
+├── start.sh                       # Startup script
+├── package.json                   # Runtime dependencies
+├── src -> ../../src/ai-codegen-booster/src
+├── data -> ../../src/ai-codegen-booster/data
+└── scripts -> ../../src/ai-codegen-booster/scripts
+
 .factory/skills/ui-ux-pro-max/   # Droid (Factory) skill (symlinks to src/)
 .shared/ui-ux-pro-max/            # Symlink to src/ui-ux-pro-max/
 .claude-plugin/                   # Claude Marketplace publishing
@@ -61,7 +84,11 @@ The search engine uses BM25 ranking combined with regex matching. Domain auto-de
 
 ## Sync Rules
 
-**Source of Truth:** `src/ui-ux-pro-max/`
+**Source of Truth:** `src/`
+
+All skills follow the same pattern: source files in `src/`, symlinks in `.claude/skills/`.
+
+### UI/UX Pro Max
 
 When modifying files:
 
@@ -83,6 +110,22 @@ When modifying files:
    ```
 
 4. **Reference Folders** - No manual sync needed. The CLI generates these from templates during `uipro init`.
+
+### AI Codegen Booster
+
+When modifying files:
+
+1. **Source Code** - Edit in `src/ai-codegen-booster/`:
+   - `src/` - TypeScript source files
+   - `data/` - CSV databases
+   - `scripts/` - Build scripts
+   - Changes automatically available via symlinks in `.claude/skills/`
+
+2. **Skill Metadata** - Edit directly in `.claude/skills/ai-codegen-booster/`:
+   - `SKILL.md` - Skill definition and documentation
+   - `INSTALL.md` - Installation instructions
+   - `start.sh` - Startup script
+   - `package.json` - Runtime dependencies
 
 ## Prerequisites
 

@@ -1,5 +1,0 @@
-No,Convention_Type,Rule,Good_Example,Bad_Example,Reason,Severity,Keywords
-1,Naming,Component files use PascalCase,Button.tsx,button.tsx,Matches React component naming convention and makes components easily identifiable,Must,"naming,component,file,pascal"
-2,Import Order,Group imports: React → External → Internal → Styles,"import React from 'react';\nimport { cn } from '@/lib/utils';\nimport './styles.css';","import './styles.css';\nimport { cn } from '@/lib/utils';\nimport React from 'react';",Improves code readability and consistency across the codebase,Should,"import,order,organization,structure"
-3,Code Style,Props destructuring in function params,"function Button({ variant, size }) { }","function Button(props) { const { variant, size } = props; }",More concise and follows modern React best practices,Should,"props,destructuring,style,react"
-4,Naming,Boolean variables use is/has/should/can prefix,"const isLoading = true;\nconst hasError = false;","const loading = true;\nconst error = false;",Makes boolean intent clear and improves code readability,Should,"naming,boolean,variable,prefix"
