@@ -259,6 +259,70 @@ export class KnowledgeBaseManager {
   }
 
   /**
+   * Get knowledge base (load from CSV files)
+   */
+  async getKB(): Promise<KnowledgeBase> {
+    const outputDir = this.config.outputDir;
+
+    // Load CSV files
+    const componentsPath = join(outputDir, 'components.csv');
+    const stylesPath = join(outputDir, 'styles.csv');
+    const conventionsPath = join(outputDir, 'conventions.csv');
+
+    const components = await this.loadComponentsFromCSV(componentsPath);
+    const styles = await this.loadStylesFromCSV(stylesPath);
+    const conventions = await this.loadConventionsFromCSV(conventionsPath);
+
+    return {
+      config: this.config,
+      components,
+      styles,
+      conventions,
+      lastUpdated: new Date(),
+      version: '1.3.0',
+    };
+  }
+
+  /**
+   * Load components from CSV (stub for now)
+   */
+  private async loadComponentsFromCSV(path: string): Promise<any[]> {
+    // TODO: Implement CSV parsing
+    try {
+      await access(path);
+      return [];
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Load styles from CSV (stub for now)
+   */
+  private async loadStylesFromCSV(path: string): Promise<any[]> {
+    // TODO: Implement CSV parsing
+    try {
+      await access(path);
+      return [];
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Load conventions from CSV (stub for now)
+   */
+  private async loadConventionsFromCSV(path: string): Promise<any[]> {
+    // TODO: Implement CSV parsing
+    try {
+      await access(path);
+      return [];
+    } catch {
+      return [];
+    }
+  }
+
+  /**
    * Update configuration
    */
   updateConfig(updates: Partial<KnowledgeBaseConfig>): void {

@@ -173,3 +173,7 @@ export interface KnowledgeBase {
   /** Version */
   version: string;
 }
+
+// Re-export validation types (forward export to avoid circular dependencies)
+// These types are defined in validator.ts but exported here for convenience
+export type { ValidationResult, ValidationCheck, ValidationChecks, QualityScore, ValidatorOptions } from './validator';
