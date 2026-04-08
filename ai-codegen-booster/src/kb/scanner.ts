@@ -206,7 +206,6 @@ export class KnowledgeBaseScanner {
             name: p.name,
             type: p.type,
             required: p.required,
-            description: p.description,
           })),
           description: `${result.name} component`,
           category: 'UI',
@@ -245,11 +244,10 @@ export class KnowledgeBaseScanner {
             name: p.name,
             type: p.type,
             required: p.required,
-            description: p.description,
           })),
           events: result.events,
           slots: result.slots,
-          apiStyle: result.apiStyle,
+          apiStyle: (result.apiStyle === 'Composition' || result.apiStyle === 'Options') ? result.apiStyle : undefined,
           description: `${result.name} component`,
           category: 'UI',
           keywords: [result.name.toLowerCase(), 'vue', 'component'],
@@ -260,43 +258,41 @@ export class KnowledgeBaseScanner {
 
       // Extract styles from Vue SFC
       const styleResult = await extractVueStyles(content);
-      if (styleResult.styles.length > 0) {
-        for (const style of styleResult.styles) {
-          // Variables
-          if (style.variables) {
-            for (const variable of style.variables) {
-              styles.push({
-                styleType: this.getStyleType(style.lang || 'css', true),
-                name: variable.name,
-                value: variable.value,
-                category: variable.category,
-                usage: `Use in ${style.lang || 'CSS'}`,
-                example: variable.name,
-                preprocessor: this.getPreprocessor(style.lang || 'css'),
-                keywords: [variable.name, variable.category.toLowerCase(), style.lang || 'css'],
-                filePath,
-              });
-              this.stats.stylesFound++;
-            }
-          }
 
-          // Utilities
-          if (style.utilities) {
-            for (const utility of style.utilities) {
-              styles.push({
-                styleType: 'Utility Class',
-                name: utility.selector,
-                value: JSON.stringify(utility.properties),
-                category: utility.category,
-                usage: `Apply class`,
-                example: utility.selector,
-                preprocessor: this.getPreprocessor(style.lang || 'css'),
-                keywords: [utility.selector, utility.category.toLowerCase()],
-                filePath,
-              });
-              this.stats.stylesFound++;
-            }
-          }
+      // Variables
+      if (styleResult.variables && styleResult.variables.length > 0) {
+        for (const variable of styleResult.variables) {
+          styles.push({
+            styleType: this.getStyleType(variable.lang, true),
+            name: variable.name,
+            value: variable.value,
+            category: variable.category,
+            usage: `Use in ${variable.lang}`,
+            example: variable.name,
+            preprocessor: this.getPreprocessor(variable.lang),
+            keywords: [variable.name, variable.category.toLowerCase(), variable.lang],
+            filePath,
+          });
+          this.stats.stylesFound++;
+        }
+      }
+
+      // Utilities
+      if (styleResult.utilities && styleResult.utilities.length > 0) {
+        for (const utility of styleResult.utilities) {
+          const lang = styleResult.styles[0]?.lang || 'css';
+          styles.push({
+            styleType: 'Utility Class',
+            name: utility.selector,
+            value: JSON.stringify(utility.properties),
+            category: utility.category,
+            usage: `Apply class`,
+            example: utility.selector,
+            preprocessor: this.getPreprocessor(lang),
+            keywords: [utility.selector, utility.category.toLowerCase()],
+            filePath,
+          });
+          this.stats.stylesFound++;
         }
       }
     } catch (error) {
