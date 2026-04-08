@@ -284,42 +284,160 @@ export class KnowledgeBaseManager {
   }
 
   /**
-   * Load components from CSV (stub for now)
+   * Load components from CSV
    */
   private async loadComponentsFromCSV(path: string): Promise<any[]> {
-    // TODO: Implement CSV parsing
     try {
       await access(path);
-      return [];
+      const content = await readFile(path, 'utf-8');
+      const lines = content.split('\n').filter(line => line.trim());
+
+      if (lines.length <= 1) return []; // No data or header only
+
+      const headers = this.parseCSVLine(lines[0]);
+      const components: any[] = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = this.parseCSVLine(lines[i]);
+        if (values.length === 0) continue;
+
+        const component: any = {};
+        headers.forEach((header, index) => {
+          const value = values[index] || '';
+
+          // Parse special fields
+          if (header === 'props') {
+            component.props = value ? JSON.parse(value) : [];
+          } else if (header === 'events') {
+            component.events = value ? value.split(',').map(e => e.trim()) : [];
+          } else if (header === 'slots') {
+            component.slots = value ? value.split(',').map(s => s.trim()) : [];
+          } else if (header === 'keywords') {
+            component.keywords = value ? value.split(',').map(k => k.trim()) : [];
+          } else {
+            component[header] = value;
+          }
+        });
+
+        components.push(component);
+      }
+
+      return components;
     } catch {
       return [];
     }
   }
 
   /**
-   * Load styles from CSV (stub for now)
+   * Load styles from CSV
    */
   private async loadStylesFromCSV(path: string): Promise<any[]> {
-    // TODO: Implement CSV parsing
     try {
       await access(path);
-      return [];
+      const content = await readFile(path, 'utf-8');
+      const lines = content.split('\n').filter(line => line.trim());
+
+      if (lines.length <= 1) return [];
+
+      const headers = this.parseCSVLine(lines[0]);
+      const styles: any[] = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = this.parseCSVLine(lines[i]);
+        if (values.length === 0) continue;
+
+        const style: any = {};
+        headers.forEach((header, index) => {
+          const value = values[index] || '';
+
+          if (header === 'keywords') {
+            style.keywords = value ? value.split(',').map(k => k.trim()) : [];
+          } else {
+            style[header] = value;
+          }
+        });
+
+        styles.push(style);
+      }
+
+      return styles;
     } catch {
       return [];
     }
   }
 
   /**
-   * Load conventions from CSV (stub for now)
+   * Load conventions from CSV
    */
   private async loadConventionsFromCSV(path: string): Promise<any[]> {
-    // TODO: Implement CSV parsing
     try {
       await access(path);
-      return [];
+      const content = await readFile(path, 'utf-8');
+      const lines = content.split('\n').filter(line => line.trim());
+
+      if (lines.length <= 1) return [];
+
+      const headers = this.parseCSVLine(lines[0]);
+      const conventions: any[] = [];
+
+      for (let i = 1; i < lines.length; i++) {
+        const values = this.parseCSVLine(lines[i]);
+        if (values.length === 0) continue;
+
+        const convention: any = {};
+        headers.forEach((header, index) => {
+          const value = values[index] || '';
+
+          if (header === 'keywords') {
+            convention.keywords = value ? value.split(',').map(k => k.trim()) : [];
+          } else {
+            convention[header] = value;
+          }
+        });
+
+        conventions.push(convention);
+      }
+
+      return conventions;
     } catch {
       return [];
     }
+  }
+
+  /**
+   * Parse a single CSV line handling quotes
+   */
+  private parseCSVLine(line: string): string[] {
+    const result: string[] = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const nextChar = line[i + 1];
+
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          // Escaped quote
+          current += '"';
+          i++;
+        } else {
+          // Toggle quote mode
+          inQuotes = !inQuotes;
+        }
+      } else if (char === ',' && !inQuotes) {
+        // End of field
+        result.push(current);
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+
+    // Add last field
+    result.push(current);
+
+    return result;
   }
 
   /**
