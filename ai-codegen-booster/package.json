@@ -1,0 +1,51 @@
+{
+  "name": "ai-codegen-booster",
+  "version": "1.0.0",
+  "description": "AI Code Generation Booster - Import training materials to enhance AI code generation",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/scripts/search.ts",
+    "search": "tsx src/scripts/search.ts",
+    "extract": "tsx src/cli/commands/extract.ts",
+    "validate": "tsx src/cli/commands/validate.ts",
+    "import": "tsx src/cli/commands/import.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src tests --ext .ts"
+  },
+  "keywords": [
+    "ai",
+    "codegen",
+    "code-generation",
+    "training",
+    "typescript",
+    "css-extractor",
+    "component-extractor",
+    "skill"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/parser": "^7.23.6",
+    "@babel/traverse": "^7.23.6",
+    "@babel/types": "^7.23.6",
+    "@types/babel__traverse": "^7.20.4",
+    "@types/node": "^22.10.1",
+    "@vitest/ui": "^1.1.0",
+    "postcss": "^8.4.32",
+    "typescript": "^5.7.2",
+    "tsx": "^4.7.0",
+    "vitest": "^1.1.0"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
