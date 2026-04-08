@@ -7,7 +7,7 @@ import {
   extractComponent,
   extractPropsFromType,
   typeNodeToString,
-} from '../src/extractors/component-extractor';
+} from '../../src/extractors/component-extractor';
 
 describe('Component Extractor', () => {
   describe('extractComponent()', () => {

@@ -32,6 +32,7 @@ export async function extractComponent(code: string): Promise<ComponentInfo> {
   let componentName = '';
   let propsInterface: PropInfo[] = [];
   const dependencies: string[] = [];
+  const interfaceProps: Map<string, PropInfo[]> = new Map();
 
   traverse(ast, {
     // Find function declarations
@@ -43,6 +44,14 @@ export async function extractComponent(code: string): Promise<ComponentInfo> {
         const params = path.node.params;
         if (params.length > 0) {
           propsInterface = extractPropsFromParams(params[0]);
+
+          // If props interface wasn't extracted from params, check if we have a matching interface
+          if (propsInterface.length === 0) {
+            const propsInterfaceName = componentName + 'Props';
+            if (interfaceProps.has(propsInterfaceName)) {
+              propsInterface = interfaceProps.get(propsInterfaceName)!;
+            }
+          }
         }
       }
     },
@@ -63,8 +72,14 @@ export async function extractComponent(code: string): Promise<ComponentInfo> {
     // Find TypeScript interface definitions
     TSInterfaceDeclaration(path) {
       const name = path.node.id.name;
-      if (name.endsWith('Props') && (!componentName || name.startsWith(componentName))) {
-        propsInterface = extractPropsFromInterface(path.node);
+      if (name.endsWith('Props')) {
+        const extractedProps = extractPropsFromInterface(path.node);
+        interfaceProps.set(name, extractedProps);
+
+        // If component name is already known and matches, use these props
+        if (componentName && name.startsWith(componentName)) {
+          propsInterface = extractedProps;
+        }
       }
     },
 

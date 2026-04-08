@@ -3,7 +3,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { extractCSS, categorizeVariable, categorizeUtility } from '../src/extractors/css-extractor';
+import { extractCSS, categorizeVariable, categorizeUtility } from '../../src/extractors/css-extractor';
 
 describe('CSS Extractor', () => {
   describe('extractCSS()', () => {

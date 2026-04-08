@@ -77,6 +77,14 @@ export function categorizeVariable(name: string, value: string): string {
   const nameLower = name.toLowerCase();
   const valueLower = value.toLowerCase();
 
+  // Typography detection (check first to avoid conflict with text-color)
+  if (
+    nameLower.includes('font') ||
+    nameLower.includes('text-') && (nameLower.includes('size') || nameLower.includes('sm') || nameLower.includes('lg') || nameLower.includes('xl'))
+  ) {
+    return 'Typography';
+  }
+
   // Color detection
   if (
     nameLower.includes('color') ||
@@ -95,14 +103,6 @@ export function categorizeVariable(name: string, value: string): string {
     nameLower.includes('margin')
   ) {
     return 'Spacing';
-  }
-
-  // Typography detection
-  if (
-    nameLower.includes('font') ||
-    (nameLower.includes('text') && !nameLower.includes('color'))
-  ) {
-    return 'Typography';
   }
 
   // Shadow detection
@@ -128,20 +128,26 @@ function isUtilityClass(selector: string): boolean {
 export function categorizeUtility(selector: string): string {
   const selectorLower = selector.toLowerCase();
 
+  // Typography detection (check first to avoid conflict with text- colors)
+  if (
+    selectorLower.includes('font-') ||
+    (selectorLower.includes('text-') && (selectorLower.includes('sm') || selectorLower.includes('lg') || selectorLower.includes('xl') || selectorLower.includes('base')))
+  ) {
+    return 'Typography';
+  }
+
+  // Color detection
   if (selectorLower.includes('bg-') || selectorLower.includes('text-')) {
     return 'Color';
   }
 
+  // Spacing detection
   if (
     selectorLower.includes('p-') ||
     selectorLower.includes('m-') ||
     selectorLower.includes('gap-')
   ) {
     return 'Spacing';
-  }
-
-  if (selectorLower.includes('text-') || selectorLower.includes('font-')) {
-    return 'Typography';
   }
 
   return 'Layout';

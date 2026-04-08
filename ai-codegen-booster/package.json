@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-data",
+    "copy-data": "mkdir -p dist/data && cp -r src/data/*.csv dist/data/",
     "dev": "tsx src/scripts/search.ts",
     "search": "tsx src/scripts/search.ts",
     "extract": "tsx src/cli/commands/extract.ts",
@@ -15,7 +16,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "lint": "eslint src tests --ext .ts"
+    "lint": "eslint src tests --ext .ts",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "ai",
@@ -34,6 +36,7 @@
     "@babel/traverse": "^7.23.6",
     "@babel/types": "^7.23.6",
     "@types/babel__traverse": "^7.20.4",
+    "@types/less": "^3.0.6",
     "@types/node": "^22.10.1",
     "@vitest/ui": "^1.1.0",
     "postcss": "^8.4.32",
@@ -42,8 +45,11 @@
     "vitest": "^1.1.0"
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.4.0",
+    "chalk": "^5.3.0",
     "commander": "^11.1.0",
-    "chalk": "^5.3.0"
+    "less": "^4.2.0",
+    "sass": "^1.69.5"
   },
   "engines": {
     "node": ">=18.0.0"
