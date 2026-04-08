@@ -1,6 +1,6 @@
 {
   "name": "ai-codegen-booster",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "description": "AI Code Generation Booster - Import training materials to enhance AI code generation",
   "type": "module",
   "main": "dist/index.js",
@@ -13,6 +13,10 @@
     "extract": "tsx src/cli/commands/extract.ts",
     "validate": "tsx src/cli/commands/validate.ts",
     "import": "tsx src/cli/commands/import.ts",
+    "kb": "tsx src/cli/kb.ts",
+    "kb:init": "tsx src/cli/kb.ts init",
+    "kb:build": "tsx src/cli/kb.ts build",
+    "kb:scan": "tsx src/cli/kb.ts scan",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
@@ -27,8 +31,12 @@
     "typescript",
     "css-extractor",
     "component-extractor",
+    "knowledge-base",
     "skill"
   ],
+  "bin": {
+    "kb": "./dist/cli/kb.js"
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
