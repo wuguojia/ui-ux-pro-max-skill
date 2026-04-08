@@ -1,3 +1,15 @@
+---
+name: ai-codegen-booster
+description: Extract components, styles, and conventions from codebases to build structured knowledge bases for AI. Use when generating code to ensure AI follows your project's design system, coding standards, and architectural patterns. Includes intelligent extractors for React/Vue, pattern analyzers, quality scoring, and A/B testing to quantify knowledge base effectiveness.
+license: MIT
+compatibility: Requires Node.js 16+ and npm. Compatible with Claude Code, Cursor, Windsurf, Codeium and similar AI coding assistants. Supports Vue 3, React, TypeScript, and JavaScript projects.
+metadata:
+  version: "1.4.0"
+  frameworks: "Vue 3, React, TypeScript, JavaScript"
+  features: "intelligent-extractors, pattern-analysis, quality-scoring, ab-testing, knowledge-base-management"
+  language: "zh-CN"
+---
+
 # AI Codegen Booster - AI辅助工作流指南
 
 > AI智能提取 + 自动构建知识库，让AI代码生成更准确
